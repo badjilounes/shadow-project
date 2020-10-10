@@ -1,5 +1,6 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { DeepPartial } from 'typeorm';
 import { User } from '../user/user.entity';
 import { UserService } from '../user/user.service';
 import { LoginResponseDto } from './model/login-response.dto';
@@ -29,6 +30,26 @@ export class AuthService {
         }
 
         return this.encodeUserToken(user);
+    }
+
+    async signup(user: DeepPartial<User>): Promise<User> {
+        return this.userService.createOne({
+            options: { routes: { createOneBase: { returnShallow: true } } },
+            parsed: { 
+                fields: [],
+                paramsFilter: [],
+                authPersist: {},
+                search: null,
+                filter: [],
+                or: [],
+                join: [],
+                sort: [],
+                limit: 0,
+                offset: 0,
+                page: 0,
+                cache: 0,
+            }
+        }, user);
     }
 
     async validateEmail(email: string | undefined): Promise<User> {
