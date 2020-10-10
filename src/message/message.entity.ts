@@ -1,7 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Exclude } from "class-transformer";
-import { BeforeInsert, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import { DateColumn } from "../core/column/date-column.decorator";
+import { CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { TextColumn } from "../core/column/text-column.decorator";
 import { User } from "../identity/user/user.entity";
 
